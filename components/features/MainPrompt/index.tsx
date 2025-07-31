@@ -1,21 +1,11 @@
-import { ChevronsUpDown, GalleryVerticalEnd } from 'lucide-react';
+import { Copy } from 'lucide-react';
 import { FunctionComponent } from 'react';
 
 import { AppSidebar } from '@/components/app-sidebar';
-import { ChartAreaInteractive } from '@/components/chart-area-interactive';
-import { SectionCards } from '@/components/section-cards';
 import { SiteHeader } from '@/components/site-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { SidebarInset, SidebarMenuButton, SidebarProvider } from '@/components/ui/sidebar';
-import {
-    Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue
-} from '@radix-ui/react-select';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 import InputSelect from './_components/InputSelect';
 import InputText from './_components/InputText';
@@ -78,7 +68,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
                     <InputText label="Action" subLabel="Action" />
                     <InputText label="Purpose" subLabel="Purpose" />
                     <InputText label="Expectation" subLabel="Expectation" />
-              
+
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col gap-3">
                         <Button variant="outline" className="w-full">
@@ -90,7 +80,10 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
                 </CardContent>
               </Card>
               <Card className="w-2/3 h-[100%] rounded-s-sm rounded-e-sm p-8">
-              <Card className="w-[100%] bg-[#ededed] h-[100%] rounded-s-sm rounded-e-sm"></Card>
+                <Card className="w-[100%] bg-[#ededed] h-[100%] rounded-s-sm rounded-e-sm relative">
+                  <Copy className="absolute top-4 right-4" />
+
+                </Card>
               </Card>
             </div>
           </div>
