@@ -10,12 +10,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { SidebarInset, SidebarMenuButton, SidebarProvider } from '@/components/ui/sidebar';
 import {
     Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue
 } from '@radix-ui/react-select';
 
 import InputSelect from './_components/InputSelect';
+import InputText from './_components/InputText';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface MainPromptProps {}
@@ -42,20 +45,53 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
                   <CardDescription></CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form className='flex flex-col gap-4'>
-                   <InputSelect label={"Category"} />
-                   <InputSelect label={"Model"} />
+                  <form className="flex flex-col gap-4">
+                    <InputSelect
+                      label={"Category"}
+                      option={[
+                        { label: "Text", value: "Text" },
+                        { label: "Media", value: "Media" },
+                        { label: "Music", value: "Music" },
+                      ]}
+                    />
+                    <InputSelect
+                      label={"Model"}
+                      option={[
+                        {
+                          label: "APE",
+                          subLabel: "(Action, Purpose, Expectation)",
+                          value: "APE1",
+                        },
+                        {
+                          label: "APE",
+                          subLabel: "(Action, Purpose, Expectation)",
+                          value: "APE2",
+                        },
+                        {
+                          label: "APE",
+                          subLabel: "(Action, Purpose, Expectation)",
+                          value: "APE3",
+                        },
+                      ]}
+                    />
+
+                    <InputText label="Action" subLabel="Action" />
+                    <InputText label="Purpose" subLabel="Purpose" />
+                    <InputText label="Expectation" subLabel="Expectation" />
+              
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col gap-3">
                         <Button variant="outline" className="w-full">
-                         Generate Prompt
+                          Generate Prompt
                         </Button>
                       </div>
                     </div>
                   </form>
                 </CardContent>
               </Card>
-              <Card className="w-2/3 h-[100%] rounded-s-sm rounded-e-sm"></Card>
+              <Card className="w-2/3 h-[100%] rounded-s-sm rounded-e-sm p-8">
+              <Card className="w-[100%] bg-[#ededed] h-[100%] rounded-s-sm rounded-e-sm"></Card>
+              </Card>
             </div>
           </div>
         </div>

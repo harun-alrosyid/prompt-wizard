@@ -9,9 +9,13 @@ import { SidebarMenuButton } from '@/components/ui/sidebar';
 
 interface InputSelectProps {
   label: string;
+  option: Array<{ label: string; subLabel?: string; value: string }>;
 }
 
-const InputSelect: FunctionComponent<InputSelectProps> = ({ label }) => {
+const InputSelect: FunctionComponent<InputSelectProps> = ({
+  label,
+  option,
+}) => {
   return (
     <Card className="py-0">
       <DropdownMenu>
@@ -31,7 +35,15 @@ const InputSelect: FunctionComponent<InputSelectProps> = ({ label }) => {
           className="w-(--radix-dropdown-menu-trigger-width)"
           align="start"
         >
-          <DropdownMenuItem key={"version"}></DropdownMenuItem>
+          {option.map((item) => (
+            <DropdownMenuItem key={item.value}>
+                <div className='flex flex-col'>
+              <span>{item.label}</span>
+              <span className='text-xs'>{item.subLabel}</span>
+                </div>
+                    
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </Card>
