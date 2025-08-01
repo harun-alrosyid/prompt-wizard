@@ -1,4 +1,4 @@
-const modelPrompts = [
+const allModrels = [
   {
     value: "APE",
     label: "APE",
@@ -627,6 +627,81 @@ const modelPrompts = [
   },
 ];
 
+const modelPrompts = [
+  {
+    value: "APE",
+    label: "APE",
+    subLabel: "(Action, Purpose, Expectation)",
+    input: [
+      {
+        label: "Action",
+        description:
+          "Tentukan secara spesifik tindakan yang Anda ingin saya lakukan.",
+        placeholder:
+          "Buatlah draf rencana pemasaran untuk produk minuman sehat baru.",
+      },
+      {
+        label: "Purpose",
+        description:
+          "Jelaskan mengapa tindakan ini penting atau apa yang ingin Anda capai.",
+        placeholder:
+          "Rencana ini akan digunakan untuk presentasi kepada tim manajemen, untuk mendapatkan persetujuan anggaran dan sumber daya.",
+      },
+      {
+        label: "Expectation",
+        description:
+          "Berikan contoh atau kriteria yang jelas tentang hasil yang Anda harapkan.",
+        placeholder:
+          "Draf harus mencakup analisis pesaing, target audiens, strategi promosi (termasuk media sosial dan iklan digital), serta jadwal pelaksanaan.",
+      },
+      {
+        label: "Additional Context & Special Instructions",
+        description: "Additional Context & Special Instructions",
+        placeholder: "",
+      },
+    ],
+  },
+  {
+    value: "AIDA",
+    label: "AIDA",
+    subLabel: "(Attention, Interest, Desire, Action)",
+    input: [
+      {
+        label: "Attention",
+        description:
+          "Pertanyaan, fakta mengejutkan, atau pernyataan yang relevan sangat efektif di sini",
+        placeholder:
+          "Apakah Anda sering merasa kesulitan mengelola keuangan pribadi? Sebagian besar orang tidak tahu cara mengatur gaji mereka secara efektif, yang bisa berujung pada stres finansial.",
+      },
+      {
+        label: "Interest",
+        description: "Jelaskan mengapa topik ini penting bagi audiens",
+        placeholder:
+          "Webinar gratis kami, Jurus Jitu Mengelola Keuangan, akan mengajarkan Anda teknik-teknik praktis untuk menyusun anggaran, menabung, dan berinvestasi meskipun dengan gaji pas-pasan.",
+      },
+      {
+        label: "Desire",
+        description:
+          "Ciptakan keinginan dalam diri audiens dengan menyoroti manfaat dan nilai.",
+        placeholder:
+          "Bayangkan, dalam 60 menit, Anda akan mendapatkan panduan lengkap untuk memiliki kendali penuh atas uang Anda, bebas dari kekhawatiran utang, dan bisa mulai merencanakan masa depan impian.",
+      },
+      {
+        label: "Action",
+        description:
+          "Berikan seruan tindakan (call-to-action) yang jelas dan mudah diikuti",
+        placeholder:
+          "Daftar sekarang melalui tautan di bawah ini. Tempat terbatas, jadi jangan sampai ketinggalan!",
+      },
+      {
+        label: "Additional Context & Special Instructions",
+        description: "Additional Context & Special Instructions",
+        placeholder: "",
+      },
+    ],
+  },
+];
+
 const expectResults = [{ label: "Text", subLabel: "Text", value: "Text" }];
 
-export { expectResults, modelPrompts };
+export { expectResults, modelPrompts, allModrels };

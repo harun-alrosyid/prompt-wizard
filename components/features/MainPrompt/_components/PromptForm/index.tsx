@@ -23,38 +23,49 @@ type PromptFormProps = object;
  * values.
  */
 const PromptForm: FunctionComponent<PromptFormProps> = () => {
-    const { category, setCategory, model, setModel } = useContext(MainPromptContext);
+  const { category, setCategory, model, setModel } =
+    useContext(MainPromptContext);
+
   return (
-    <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm">
+    <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm ">
       <CardHeader>
         <CardTitle>Input Your Parameter</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-4">
-          <InputSelect
-            label={"Category"}
-            option={expectResults}
-            value={category}
-            onSelect={setCategory}
-            disabled
-          />
-          <InputSelect
-            label={"Model"}
-            option={modelPrompts.map(({ value, label, subLabel }) => ({
-              value,
-              label,
-              subLabel,
-            }))}
-            value={model}
-            onSelect={setModel}
-          />
+        <form className="flex flex-col gap-4 h-[100%]">
+             <InputSelect
+              label={"Category"}
+              option={expectResults}
+              value={category}
+              onSelect={setCategory}
+              disabled
+            />
+            <InputSelect
+              label={"Model"}
+              option={modelPrompts.map(({ value, label, subLabel }) => ({
+                value,
+                label,
+                subLabel,
+              }))}
+              value={model}
+              onSelect={setModel}
+            />
+          <div className="flex flex-col gap-3  max-h-[60%] overflow-auto">
+           
 
-          {modelPrompts
-            .find(({ value }) => value === model?.value)
-            ?.input.map(({ label, description }) => (
-              <InputText key={label} label={label} subLabel={description} />
-            ))}
+            {modelPrompts
+              .find(({ value }) => value === model?.value)
+              ?.input.map(({ label, description, placeholder }) => (
+                <InputText
+                  className="min-h-24"
+                  placeholder={placeholder ?? ""}
+                  key={label}
+                  label={label}
+                  subLabel={description}
+                />
+              ))}
+          </div>
 
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">

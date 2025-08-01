@@ -43,7 +43,7 @@ const InputSelect: FunctionComponent<InputSelectProps> = ({
       <DropdownMenuTrigger asChild>
         <SidebarMenuButton
           size="lg"
-          className={`data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground border-2 border-[#ededed] ${
+          className={`data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground border-2 border-[#ededed] min-h-12 ${
             disabled ? " bg-[#ededed]" : ""
           }`}
         >
