@@ -1,19 +1,17 @@
 "use client";
-import { Copy } from 'lucide-react';
 import { FunctionComponent, useState } from 'react';
 
 import { expectResults } from '@/app/constant';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
-import { Card } from '@/components/ui/card';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 import { Option } from './_components/InputSelect';
 import PromptForm from './_components/PromptForm';
+import PromptResult from './_components/PromptResult';
 import { MainPromptContext } from './_context';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface MainPromptProps {}
+type MainPromptProps = object;
 
 /**
  * The main prompt component.
@@ -35,7 +33,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
   const [category, setCategory] = useState<Option>(expectResults[0]);
 
   const [model, setModel] = useState<Option>();
-  
+
   return (
     <MainPromptContext value={{ category, setCategory, model, setModel }}>
       <SidebarProvider
@@ -53,11 +51,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
             <div className="@container/main flex flex-1 flex-col gap-2">
               <div className="flex flex-row">
                 <PromptForm />
-                <Card className="w-2/3 h-[100%] rounded-s-sm rounded-e-sm p-8">
-                  <Card className="w-[100%] bg-[#ededed] h-[100%] rounded-s-sm rounded-e-sm relative">
-                    <Copy className="absolute top-4 right-4" />
-                  </Card>
-                </Card>
+                <PromptResult />
               </div>
             </div>
           </div>
