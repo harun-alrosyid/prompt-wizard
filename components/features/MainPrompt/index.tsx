@@ -1,5 +1,6 @@
+"use client";
 import { Copy } from 'lucide-react';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-import InputSelect from './_components/InputSelect';
+import InputSelect, { Option } from './_components/InputSelect';
 import InputText from './_components/InputText';
 
 const modelPrompts = [
@@ -639,13 +640,14 @@ const modelPrompts = [
   },
 ];
 
-const expectResults = [{ label: "Text", value: "Text" }];
+const expectResults = [{ label: "Text", subLabel: "Text", value: "Text" }];
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface MainPromptProps {}
 
 const MainPrompt: FunctionComponent<MainPromptProps> = () => {
-
+  const [category, setCategory] = useState<Option>(expectResults[0]);
+  const [model, setModel] = useState<Option>();
   return (
     <SidebarProvider
       style={
@@ -668,7 +670,13 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
                 </CardHeader>
                 <CardContent>
                   <form className="flex flex-col gap-4">
-                    <InputSelect label={"Category"} option={expectResults} />
+                    <InputSelect
+                      label={"Category"}
+                      option={expectResults}
+                      value={category}
+                      onSelect={setCategory}
+                      disabled
+                    />
                     <InputSelect
                       label={"Model"}
                       option={modelPrompts.map(
@@ -678,12 +686,19 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
                           subLabel,
                         })
                       )}
+                      value={model}
+                      onSelect={setModel}
                     />
 
-                    {}
-                    <InputText label="Action" subLabel="Action" />
-                    <InputText label="Purpose" subLabel="Purpose" />
-                    <InputText label="Expectation" subLabel="Expectation" />
+                    {modelPrompts
+                      .find(({ value }) => value === model?.value)
+                      ?.input.map(({ label, description }) => (
+                        <InputText
+                          key={label}
+                          label={label}
+                          subLabel={description}
+                        />
+                      ))}
 
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col gap-3">
