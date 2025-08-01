@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 import { expectResults, modelPrompts } from '@/app/constant';
 import { Button } from '@/components/ui/button';
@@ -25,6 +26,14 @@ type PromptFormProps = object;
 const PromptForm: FunctionComponent<PromptFormProps> = () => {
   const { category, setCategory, model, setModel } =
     useContext(MainPromptContext);
+    const {
+    register,
+    handleSubmit,
+    watch,
+    control
+  } = useForm()
+  console.log(Object.values(watch()).join('\n'));
+  
 
   return (
     <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm ">
@@ -57,12 +66,20 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
             {modelPrompts
               .find(({ value }) => value === model?.value)
               ?.input.map(({ label, description, placeholder }) => (
-                <InputText
-                  className="min-h-24"
-                  placeholder={placeholder ?? ""}
+                <Controller
+                  control={control}
+                  name={label}
                   key={label}
-                  label={label}
-                  subLabel={description}
+                  render={({ field }) => (
+                    <InputText
+                      className="min-h-24"
+                      placeholder={placeholder ?? ""}
+                      key={label}
+                      label={label}
+                      subLabel={description}
+                      {...field}
+                    />
+                  )}
                 />
               ))}
           </div>
