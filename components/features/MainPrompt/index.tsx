@@ -34,6 +34,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
 
   const [model, setModel] = useState<Option>();
 
+  const sidebarActive = false;
   return (
     <MainPromptContext value={{ category, setCategory, model, setModel }}>
       <SidebarProvider
@@ -44,7 +45,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
           } as React.CSSProperties
         }
       >
-        <AppSidebar variant="inset" />
+       {sidebarActive && <AppSidebar variant="floating" />}
         <SidebarInset>
           <SiteHeader />
           <div className="flex flex-1 flex-col">

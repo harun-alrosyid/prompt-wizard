@@ -26,14 +26,8 @@ type PromptFormProps = object;
 const PromptForm: FunctionComponent<PromptFormProps> = () => {
   const { category, setCategory, model, setModel } =
     useContext(MainPromptContext);
-    const {
-    register,
-    handleSubmit,
-    watch,
-    control
-  } = useForm()
-  console.log(Object.values(watch()).join('\n'));
-  
+  const { register, handleSubmit, watch, control } = useForm();
+  console.log(Object.values(watch()).join("\n"));
 
   return (
     <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm ">
@@ -60,7 +54,7 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
               value={model}
               onSelect={setModel}
             />
-          <div className="flex flex-col gap-3  max-h-[60%] overflow-auto">
+          <div className="flex flex-col gap-3  max-h-[70%] overflow-auto">
            
 
             {modelPrompts
@@ -84,12 +78,15 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
               ))}
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
-              <Button variant="outline" className="w-full">
-                Generate Prompt
+          <div className="flex gap-3 justify-between  bottom-10 absolute] ">
+            
+              <Button variant="outline" className="w-[calc(50%-10px)]">
+                Copy Prompt
               </Button>
-            </div>
+              <Button variant="default" className="w-1/2">
+                Execute
+              </Button>
+            
           </div>
         </form>
       </CardContent>
