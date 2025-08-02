@@ -26,8 +26,7 @@ type PromptFormProps = object;
 const PromptForm: FunctionComponent<PromptFormProps> = () => {
   const { category, setCategory, model, setModel } =
     useContext(MainPromptContext);
-  const { register, handleSubmit, watch, control } = useForm();
-  console.log(Object.values(watch()).join("\n"));
+  const { control } = useForm();
 
   return (
     <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm ">
@@ -37,26 +36,24 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-4 h-[100%]">
-             <InputSelect
-              label={"Category"}
-              option={expectResults}
-              value={category}
-              onSelect={setCategory}
-              disabled
-            />
-            <InputSelect
-              label={"Model"}
-              option={modelPrompts.map(({ value, label, subLabel }) => ({
-                value,
-                label,
-                subLabel,
-              }))}
-              value={model}
-              onSelect={setModel}
-            />
+          <InputSelect
+            label={"Category"}
+            option={expectResults}
+            value={category}
+            onSelect={setCategory}
+            disabled
+          />
+          <InputSelect
+            label={"Model"}
+            option={modelPrompts.map(({ value, label, subLabel }) => ({
+              value,
+              label,
+              subLabel,
+            }))}
+            value={model}
+            onSelect={setModel}
+          />
           <div className="flex flex-col gap-3  max-h-[70%] overflow-auto">
-           
-
             {modelPrompts
               .find(({ value }) => value === model?.value)
               ?.input.map(({ label, description, placeholder }) => (
@@ -79,14 +76,12 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
           </div>
 
           <div className="flex gap-3 justify-between  bottom-10 absolute] ">
-            
-              <Button variant="outline" className="w-[calc(50%-10px)]">
-                Copy Prompt
-              </Button>
-              <Button variant="default" className="w-1/2">
-                Execute
-              </Button>
-            
+            <Button variant="outline" className="w-[calc(50%-10px)]">
+              Copy Prompt
+            </Button>
+            <Button variant="default" className="w-1/2">
+              Execute
+            </Button>
           </div>
         </form>
       </CardContent>
