@@ -1,5 +1,7 @@
+"use client";
 import { FunctionComponent, useContext } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as yup from 'yup';
 
 import { expectResults, modelPrompts } from '@/app/constant';
@@ -60,7 +62,7 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
 
   const schema = createSchema(modelPrompts[0]);
 
-  const { control, handleSubmit } = useForm<FormValues>({
+  const { control, handleSubmit, watch } = useForm<FormValues>({
     resolver: yupResolver(schema),
     mode: "onTouched",
     defaultValues: modelPrompts[0]?.input.reduce((acc, cur) => {
@@ -80,10 +82,14 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
     }
   };
 
-  const onCopy = (data: FormValues) => {
-    const propmt = Object.values(data).join("\n");
+  const onCopy = () => {
+    const propmt = Object.values(watch()).join("\n");
+
     try {
-      navigator.clipboard.writeText(propmt);
+      if (navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(propmt);
+      }
+      toast("Prompt copied to clipboard");
     } catch (error) {
       console.log(error);
     }
@@ -144,7 +150,7 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
               type="button"
               variant="outline"
               className="w-[calc(50%-10px)]"
-              onClick={handleSubmit(onCopy)}
+              onClick={onCopy}
             >
               Copy Prompt
             </Button>

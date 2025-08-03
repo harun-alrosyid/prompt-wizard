@@ -1,5 +1,6 @@
 "use client";
 import { FunctionComponent, useState } from 'react';
+import { Toaster } from 'sonner';
 
 import { expectResults } from '@/app/constant';
 import { AppSidebar } from '@/components/app-sidebar';
@@ -41,6 +42,7 @@ const MainPrompt: FunctionComponent<MainPromptProps> = () => {
     <MainPromptContext
       value={{ category, setCategory, model, setModel, result, setResult }}
     >
+      <Toaster />
       <SidebarProvider
         style={
           {
