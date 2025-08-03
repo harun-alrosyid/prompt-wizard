@@ -23,8 +23,6 @@ const InputText: FunctionComponent<InputTextProps> = ({
   placeholder,
   ...attrs
 }) => {
-  console.log(placeholder);
-  
   return (
     <div className="grid gap-1">
       <Label>{label}</Label>
