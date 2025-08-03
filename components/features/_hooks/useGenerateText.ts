@@ -12,7 +12,7 @@ import useApiGenerateText from './useApiGenerateText';
    * - input: The current user input in the text input field.
    * - isLoading: A boolean indicating whether the API is currently being called.
    */
-const useGenerateTextChat = () => {
+const useGenerateText = () => {
   const { trigger, isMutating } = useApiGenerateText();
   
   const [results, setResults] = useState<Array<string>>([]);
@@ -45,4 +45,4 @@ const useGenerateTextChat = () => {
   };
 };
 
-export default useGenerateTextChat;
+export default useGenerateText;
