@@ -1,15 +1,46 @@
 import { FunctionComponent, useContext } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import { expectResults, modelPrompts } from '@/app/constant';
+import useApiGenerateText from '@/components/features/_hooks/useApiGenerateText';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { MainPromptContext } from '../../_context';
 import InputSelect from '../InputSelect';
 import InputText from '../InputText';
 
 type PromptFormProps = object;
+
+type InputField = {
+  label: string;
+  description: string;
+  placeholder?: string;
+};
+type ModelPrompt = {
+  value: string;
+  label: string;
+  subLabel: string;
+  input: InputField[];
+};
+
+type FormValues = {
+  [key: string]: string;
+};
+
+const createSchema = (
+  model: ModelPrompt | null
+): yup.ObjectSchema<FormValues> => {
+  const shape: Record<string, yup.StringSchema<string>> = {};
+
+  model?.input.forEach((field) => {
+    shape[field.label] = yup.string().required(`${field.label} is required`);
+  });
+
+  return yup.object().shape(shape) as yup.ObjectSchema<FormValues>;
+};
 
 /**
  * The main form component for the main prompt feature.
@@ -24,9 +55,39 @@ type PromptFormProps = object;
  * values.
  */
 const PromptForm: FunctionComponent<PromptFormProps> = () => {
-  const { category, setCategory, model, setModel } =
+  const { category, setCategory, model, setModel, setResult } =
     useContext(MainPromptContext);
-  const { control } = useForm();
+
+  const schema = createSchema(modelPrompts[0]);
+
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+    mode: "onTouched",
+    defaultValues: modelPrompts[0]?.input.reduce((acc, cur) => {
+      acc[cur.label] = "";
+      return acc;
+    }, {} as Record<string, string>),
+  });
+
+  const { trigger } = useApiGenerateText();
+  const onSubmit = async (data: FormValues) => {
+    const propmt = Object.values(data).join("\n");
+    try {
+      const result = await trigger({ prompt: propmt });
+      setResult(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onCopy = (data: FormValues) => {
+    const propmt = Object.values(data).join("\n");
+    try {
+      navigator.clipboard.writeText(propmt);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card className="w-1/3 h-[94vh] rounded-s-sm rounded-e-sm ">
@@ -35,7 +96,10 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-4 h-[100%]">
+        <form
+          className="flex flex-col gap-4 h-[100%]"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <InputSelect
             label={"Category"}
             option={expectResults}
@@ -76,7 +140,12 @@ const PromptForm: FunctionComponent<PromptFormProps> = () => {
           </div>
 
           <div className="flex gap-3 justify-between  bottom-10 absolute] ">
-            <Button variant="outline" className="w-[calc(50%-10px)]">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-[calc(50%-10px)]"
+              onClick={handleSubmit(onCopy)}
+            >
               Copy Prompt
             </Button>
             <Button variant="default" className="w-1/2">
