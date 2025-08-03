@@ -636,28 +636,28 @@ const modelPrompts = [
       {
         label: "Action",
         description:
-          "Tentukan secara spesifik tindakan yang Anda ingin saya lakukan.",
+          "Specify exactly what action you want me to take.",
         placeholder:
-          "Buatlah draf rencana pemasaran untuk produk minuman sehat baru.",
+          "Create a draft marketing plan for a new healthy beverage product.",
       },
       {
         label: "Purpose",
         description:
-          "Jelaskan mengapa tindakan ini penting atau apa yang ingin Anda capai.",
+          "Explain why this action is important or what you want to achieve.",
         placeholder:
-          "Rencana ini akan digunakan untuk presentasi kepada tim manajemen, untuk mendapatkan persetujuan anggaran dan sumber daya.",
+          "This plan will be used for a presentation to the management team to obtain approval for budget and resources.",
       },
       {
         label: "Expectation",
         description:
-          "Berikan contoh atau kriteria yang jelas tentang hasil yang Anda harapkan.",
+          "Provide clear examples or criteria of the outcome you expect.",
         placeholder:
-          "Draf harus mencakup analisis pesaing, target audiens, strategi promosi (termasuk media sosial dan iklan digital), serta jadwal pelaksanaan.",
+          "The draft should include competitor analysis, target audience, promotional strategies (including social media and digital ads), and an implementation timeline.",
       },
       {
         label: "Additional Context & Special Instructions",
         description: "Additional Context & Special Instructions",
-        placeholder: "",
+        placeholder: "Additional Context & Special Instructions",
       },
     ],
   },
@@ -669,38 +669,39 @@ const modelPrompts = [
       {
         label: "Attention",
         description:
-          "Pertanyaan, fakta mengejutkan, atau pernyataan yang relevan sangat efektif di sini",
+          "Questions, surprising facts, or relevant statements work well here.",
         placeholder:
-          "Apakah Anda sering merasa kesulitan mengelola keuangan pribadi? Sebagian besar orang tidak tahu cara mengatur gaji mereka secara efektif, yang bisa berujung pada stres finansial.",
+          "Do you often struggle with managing your personal finances? Most people don’t know how to budget effectively, which can lead to financial stress.",
       },
       {
         label: "Interest",
-        description: "Jelaskan mengapa topik ini penting bagi audiens",
+        description: "Explain why this topic matters to the audience.",
         placeholder:
-          "Webinar gratis kami, Jurus Jitu Mengelola Keuangan, akan mengajarkan Anda teknik-teknik praktis untuk menyusun anggaran, menabung, dan berinvestasi meskipun dengan gaji pas-pasan.",
+          "Our free webinar, Smart Ways to Manage Your Finances, will teach you practical techniques for budgeting, saving, and investing—even on a tight salary.",
       },
       {
         label: "Desire",
         description:
-          "Ciptakan keinginan dalam diri audiens dengan menyoroti manfaat dan nilai.",
+          "Create desire by highlighting the benefits and value.",
         placeholder:
-          "Bayangkan, dalam 60 menit, Anda akan mendapatkan panduan lengkap untuk memiliki kendali penuh atas uang Anda, bebas dari kekhawatiran utang, dan bisa mulai merencanakan masa depan impian.",
+          "Imagine—within 60 minutes, you’ll get a complete guide to taking full control of your money, becoming debt-free, and starting to plan your dream future.",
       },
       {
         label: "Action",
         description:
-          "Berikan seruan tindakan (call-to-action) yang jelas dan mudah diikuti",
+          "Provide a clear and easy-to-follow call-to-action.",
         placeholder:
-          "Daftar sekarang melalui tautan di bawah ini. Tempat terbatas, jadi jangan sampai ketinggalan!",
+          "Register now through the link below. Spots are limited, so don’t miss out!",
       },
       {
         label: "Additional Context & Special Instructions",
         description: "Additional Context & Special Instructions",
-        placeholder: "",
+        placeholder: "Additional Context & Special Instructions",
       },
     ],
   },
 ];
+
 
 const expectResults = [{ label: "Text", subLabel: "Text", value: "Text" }];
 

@@ -15,9 +15,6 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">Prompt-Wizard</h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant={"default"} size="sm">
-            EN
-          </Button>
 
           <ModeToggle/>
 
